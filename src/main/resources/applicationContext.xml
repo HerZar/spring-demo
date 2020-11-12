@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- importing application.properties -->
+	 <context:property-placeholder location="application.properties"/>
+    <!-- Define your beans here -->
+    	<!-- Define your beans here -->
+	<bean id = "myFortune" class= "springhibernateudemy.springdemo.RandomFortuneService">
+	</bean>
+
+	<bean id = "myCriketCoach" class= "springhibernateudemy.springdemo.CricketCoach">
+	<!--  set up setter injection for my fortune -->
+	<property name="fortuneService" ref="myFortune"/>
+	<!-- Inject literal values -->
+	<property name="email" value="${foo.email}"/>
+	<property name="team" value="${foo.team}"/>
+	</bean>
+		    
+	<bean id = "myCoach" class= "springhibernateudemy.springdemo.TrackCoach"
+	>	
+	<!-- set up constructor injection -->
+	<constructor-arg ref="myFortune" />	
+	</bean>
+    
+</beans>
+
+
+
+
+
